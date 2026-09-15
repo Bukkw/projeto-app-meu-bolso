@@ -30,8 +30,7 @@ export default function Login(){
                     onChangeText={setPassword}
                  />
 
-                 <AppButton title="Entrar"
-                    loading={loading}/>
+                 <View style={{ marginTop: 15 }}> <AppButton title="Entrar" loading={loading} /> </View>
 
                 <TouchableOpacity onPress={()=>router.push('/register')}>
                     <Text style={styles.link}>Criar nova conta</Text>            

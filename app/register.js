@@ -32,10 +32,6 @@ export default function Cadastro() {
                     Criar nova conta
                 </Text>
 
-                <Text style={styles.subtitle}>
-                    Preencha os dados para começar
-                </Text>
-
                 <AppInput
                     label="Email"
                     placeholder="seu@email.com"
@@ -61,10 +57,7 @@ export default function Cadastro() {
                     onChangeText={setConfirmPassword}
                 />
 
-                <AppButton
-                    title="Cadastrar"
-                    loading={loading}
-                />
+                <View style={{ marginTop: 15 }}> <AppButton title="Cadastrar" loading={loading} /> </View>
 
                 <TouchableOpacity onPress={()=>router.push('/')}>
                     <Text style={styles.link}>Voltar para o login</Text>            
@@ -88,12 +81,6 @@ const styles = StyleSheet.create({
         fontWeight: '900',
         color: '#2f3640',
         textAlign: 'center',
-    },
-
-    subtitle: {
-        color: '#7f8c8d',
-        textAlign: 'center',
-        marginBottom: 32,
     },
 
     link: {
