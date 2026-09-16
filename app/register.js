@@ -9,19 +9,25 @@ import {
     Alert,
 } from 'react-native';
 
-import { useRouter } from 'expo-router';
-
 import AppButton from '../src/components/AppButton';
 import AppInput from '../src/components/AppInput';
 
 export default function Cadastro() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirm, setConfirm] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const router = useRouter();
+    async function handleRegister(){
+        if(!email.trim() || !password.trim() || !confirm.trim() )
+            return Alert.alert('Atenção', 'Preencha todos os campos.');
 
+        if(password.length<6)
+            return Alert.alert('Atenção', 'A senha deve ter no mínimo 6 caracteres.')
+        
+        if(password!==confirm)
+            return Alert.alert ('Atenção', 'As senhas não conferem.');
+    };
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -53,11 +59,16 @@ export default function Cadastro() {
                     label="Confirmar senha"
                     secureTextEntry
                     placeholder="******"
-                    value={confirmPassword}
-                    onChangeText={setConfirmPassword}
+                    value={confirm}
+                    onChangeText={setConfirm}
                 />
 
-                <View style={{ marginTop: 15 }}> <AppButton title="Cadastrar" loading={loading} /> </View>
+                <View style={{ marginTop: 15 }}> 
+                <AppButton
+                title="Criar conta" 
+                loading={loading} 
+                onPress={(handleRegister)}
+                /> </View>
 
                 <TouchableOpacity onPress={()=>router.push('/')}>
                     <Text style={styles.link}>Voltar para o login</Text>            
