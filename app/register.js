@@ -8,9 +8,11 @@ import {
     View,
     Alert,
 } from 'react-native';
-
+import { router } from 'expo-router'
 import AppButton from '../src/components/AppButton';
 import AppInput from '../src/components/AppInput';
+import {signUp} from '../src/services/authService'
+import { COLORS } from '../src/constants/theme';
 
 export default function Cadastro() {
     const [email, setEmail] = useState('');
@@ -27,6 +29,20 @@ export default function Cadastro() {
         
         if(password!==confirm)
             return Alert.alert ('Atenção', 'As senhas não conferem.');
+
+        try{
+            setLoading(true);
+            const {error} = await signUp(email.trim(), password);
+            if(error){Alert.alert('Erro no cadastro', error.message)
+                console.log('Erro no cadastro', error.message);
+            return
+            } else {
+                Alert.alert('Sucesso!', 'Conta criada com sucesso, faça login para continuar.')
+                router.replace('/');
+            }
+        }finally{
+            setLoading(false);
+        }
     };
     return (
         <KeyboardAvoidingView
