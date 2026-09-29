@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from 'react'; 
 import {
     KeyboardAvoidingView,
     Platform,
@@ -20,13 +20,17 @@ export default function Cadastro() {
     const [confirm, setConfirm] = useState('');
     const [loading, setLoading] = useState(false);
 
-    async function handleRegister(){
+async function handleRegister(){
+    console.log('CLIQUEI NO BOTÃO');
+
+    if(!email.trim() || !password.trim() || !confirm.trim())
+        return Alert.alert('Atenção', 'Preencha todos os campos.');
+        
         if(!email.trim() || !password.trim() || !confirm.trim() )
             return Alert.alert('Atenção', 'Preencha todos os campos.');
 
         if(password.length<6)
-            return Alert.alert('Atenção', 'A senha deve ter no mínimo 6 caracteres.')
-        
+        return Alert.alert('Atenção', 'A senha deve ter no mínimo 6 caracteres.')
         if(password!==confirm)
             return Alert.alert ('Atenção', 'As senhas não conferem.');
 
@@ -79,12 +83,12 @@ export default function Cadastro() {
                     onChangeText={setConfirm}
                 />
 
-                <View style={{ marginTop: 15 }}> 
+                <View style={{ marginTop: 15 }}>
                 <AppButton
-                title="Criar conta" 
-                loading={loading} 
-                onPress={(handleRegister)}
-                /> </View>
+                title="Criar conta"
+                loading={loading}
+                onPress={handleRegister}/>
+                </View>
 
                 <TouchableOpacity onPress={()=>router.push('/')}>
                     <Text style={styles.link}>Voltar para o login</Text>            

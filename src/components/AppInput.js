@@ -14,7 +14,7 @@ export default function AppInput(
 
 const styles = StyleSheet.create({
     container: {
-        margimBottom:SPACING.md
+        marginBottom:SPACING.md
     },
     label: {
         color:COLORS.text, 
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         marginBottom:6
     },
     input: {
-        backgroundcolor: '#fff',
+        backgroundColor: '#fff',
         borderWidth:1,
         borderColor: COLORS.border,
         borderRadius: RADIUS.md,

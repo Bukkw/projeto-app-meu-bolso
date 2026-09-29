@@ -12,7 +12,7 @@ export default function Login(){
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS==='ios'?'padding':undefined}>
             <View>
                 <Text style={styles.title}>Meu bolso</Text>
-                <Text style={styles.subtitle}>Controle suas finanças.</Text>
+                <Text style={styles.subtitle}>Controle suas finanças</Text>
 
                 <AppInput 
                     label="Email"
