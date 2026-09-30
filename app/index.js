@@ -3,11 +3,33 @@ import { StyleSheet, View, Text, TouchableOpacity, Alert, KeyboardAvoidingView, 
 import AppButton from '../src/components/AppButton';
 import AppInput from "../src/components/AppInput";
 import { router } from 'expo-router'
-
+import { signIn } from '../src/services/authService'
 export default function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+
+    async function handleLogin(){
+        if(!email.trim() || !password.trim()){
+            alert('Atenção \nInforme o e-mail e senha')
+            return;
+        }
+        try{
+            setLoading(true);
+            const {error}=await signIn(
+                email.trim(),password.trim()
+            );
+            if(error){Alert.alert('Erro', error.message);
+                console.log('Erro', error.message);
+                return;
+            }
+            router.replace('/(app)/home')
+        }finally{
+            setLoading(false)
+        }
+    }
+
+
     return (
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS==='ios'?'padding':undefined}>
             <View>
@@ -30,7 +52,7 @@ export default function Login(){
                     onChangeText={setPassword}
                  />
 
-                 <View style={{ marginTop: 15 }}> <AppButton title="Entrar" loading={loading} /> </View>
+                 <View style={{ marginTop: 15 }}> <AppButton onPress={handleLogin} title="Entrar" loading={loading} /> </View>
 
                 <TouchableOpacity onPress={()=>router.push('/register')}>
                     <Text style={styles.link}>Criar nova conta</Text>            

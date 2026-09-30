@@ -11,8 +11,7 @@ import {
 import { router } from 'expo-router'
 import AppButton from '../src/components/AppButton';
 import AppInput from '../src/components/AppInput';
-import {signUp} from '../src/services/authService'
-import { COLORS } from '../src/constants/theme';
+import { signUp } from '../src/services/authService'
 
 export default function Cadastro() {
     const [email, setEmail] = useState('');
@@ -20,28 +19,22 @@ export default function Cadastro() {
     const [confirm, setConfirm] = useState('');
     const [loading, setLoading] = useState(false);
 
-async function handleRegister(){
-    console.log('CLIQUEI NO BOTÃO');
-
-    if(!email.trim() || !password.trim() || !confirm.trim())
-        return Alert.alert('Atenção', 'Preencha todos os campos.');
+    async function handleRegister(){
         
         if(!email.trim() || !password.trim() || !confirm.trim() )
-            return Alert.alert('Atenção', 'Preencha todos os campos.');
-
+            return alert('Atenção \nPreencha todos os campos.');
         if(password.length<6)
-        return Alert.alert('Atenção', 'A senha deve ter no mínimo 6 caracteres.')
+        return alert('Atenção \nA senha deve ter no mínimo 6 caracteres.')
         if(password!==confirm)
-            return Alert.alert ('Atenção', 'As senhas não conferem.');
+            return alert ('Atenção \nAs senhas não conferem.');
 
         try{
             setLoading(true);
             const {error} = await signUp(email.trim(), password);
-            if(error){Alert.alert('Erro no cadastro', error.message)
-                console.log('Erro no cadastro', error.message);
+            if(error){alert('Erro no cadastro', error.message)
             return
             } else {
-                Alert.alert('Sucesso!', 'Conta criada com sucesso, faça login para continuar.')
+                alert('Sucesso! \nConta criada com sucesso, faça login para continuar.')
                 router.replace('/');
             }
         }finally{
