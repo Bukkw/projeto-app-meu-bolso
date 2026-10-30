@@ -1,9 +1,57 @@
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import AppButton from '../../src/components/AppButton'
+import BalanceCard from "../../src/components/BalanceCard";
+import SummaryCard from "../../src/components/SummaryCard";
 
 export default function Home(){
     return (
-        <View>
-            <Text>Estou na home</Text>
+        <View style={styles.container}>
+         <View style={styles.header}>
+            <View>
+                <Text>Meu bolso</Text>
+                <Text>Resumo financeiro</Text>
+            </View>
+            <TouchableOpacity>
+                <Text style={styles.profile}> Profile </Text>
+            </TouchableOpacity>
+            </View>
+
+            <BalanceCard balance={50000}/>
+            <AppButton title="Gerar relatório PDF"/>
+
+            <View>
+                <SummaryCard title="Receitas" value={10000} type="receita"/>
+                <SummaryCard title="Despesas" value={5000} type="despesa"/> 
+            </View>
+            <Text style={styles.section}>Últimas transações</Text>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor:'#f8f9fa',
+        padding: 24,
+        paddingTop: 60,
+    },
+    header: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
+        alignItems:'center',
+        paddingVertical: 16,
+    },
+    profile: {
+        color:'#008f72',
+        fontWeight: '700',
+    },
+    row: {
+        flexDirection:'row',
+        marginHorizontal:-4
+    },
+    section:{
+        fontSize:18,
+        fontWeight:'800',
+        marginVertical:10
+    }
+})
