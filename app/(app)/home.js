@@ -1,7 +1,10 @@
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import AppButton from '../../src/components/AppButton'
 import BalanceCard from "../../src/components/BalanceCard";
+<<<<<<< HEAD
 import SummaryCard from "../../src/components/SummaryCard";
+=======
+>>>>>>> c2928967332d822ecf89a8ab33149cd13eaf9113
 
 export default function Home(){
     return (
@@ -18,12 +21,15 @@ export default function Home(){
 
             <BalanceCard balance={50000}/>
             <AppButton title="Gerar relatório PDF"/>
+<<<<<<< HEAD
 
             <View>
                 <SummaryCard title="Receitas" value={10000} type="receita"/>
                 <SummaryCard title="Despesas" value={5000} type="despesa"/> 
             </View>
             <Text style={styles.section}>Últimas transações</Text>
+=======
+>>>>>>> c2928967332d822ecf89a8ab33149cd13eaf9113
         </View>
     );
 }
@@ -44,6 +50,7 @@ const styles = StyleSheet.create({
     profile: {
         color:'#008f72',
         fontWeight: '700',
+<<<<<<< HEAD
     },
     row: {
         flexDirection:'row',
@@ -53,5 +60,7 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight:'800',
         marginVertical:10
+=======
+>>>>>>> c2928967332d822ecf89a8ab33149cd13eaf9113
     }
 })
