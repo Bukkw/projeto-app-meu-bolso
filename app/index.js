@@ -1,29 +1,29 @@
 import { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Alert, KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native'
 import AppButton from '../src/components/AppButton';
 import AppInput from "../src/components/AppInput";
 import { router } from 'expo-router'
 import { signIn } from '../src/services/authService'
+import { showAlert } from '../src/utils/alert'
+
 export default function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
 
     async function handleLogin(){
-        if(!email.trim() || !password.trim()){
-            alert('Atenção \nInforme o e-mail e senha')
+        if(!email.trim() || !password){
+            showAlert('Atenção', 'Informe o e-mail e senha');
             return;
         }
         try{
             setLoading(true);
-            const {error}=await signIn(
-                email.trim(),password.trim()
-            );
-            if(error){Alert.alert('Erro', error.message);
-                console.log('Erro', error.message);
+            const {error} = await signIn(email.trim(), password.trim());
+            if(error){
+                showAlert('Erro', error.message);
                 return;
             }
-            router.replace('/(app)/home')
+            router.replace('/(app)/home')        
         }finally{
             setLoading(false)
         }

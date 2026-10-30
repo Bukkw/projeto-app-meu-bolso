@@ -6,7 +6,7 @@ export default function SummaryCard({title, value, type}) {
     const color = type === 'receita' ? '#2ed573' : '#ff4757';
     return (
         <AppCard style={styles.card}>
-            <Text>{title}</Text>
+            <Text style={styles.title}>{title}</Text>
             <Text style={[styles.value,{color}]}>{formatCurrency(value)}</Text>            
         </AppCard>
     );

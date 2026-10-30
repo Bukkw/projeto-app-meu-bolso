@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     card:{
         backgroundColor: '#fff',
         borderRadius: 16,
-        margimBottom: 16
+        padding: 16,
+        marginBottom: 16
     }
 });

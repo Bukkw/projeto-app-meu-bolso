@@ -1,35 +1,31 @@
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import AppButton from '../../src/components/AppButton'
 import BalanceCard from "../../src/components/BalanceCard";
-<<<<<<< HEAD
 import SummaryCard from "../../src/components/SummaryCard";
-=======
->>>>>>> c2928967332d822ecf89a8ab33149cd13eaf9113
 
 export default function Home(){
     return (
         <View style={styles.container}>
-         <View style={styles.header}>
-            <View>
-                <Text>Meu bolso</Text>
-                <Text>Resumo financeiro</Text>
-            </View>
-            <TouchableOpacity>
-                <Text style={styles.profile}> Profile </Text>
-            </TouchableOpacity>
+            <View style={styles.header}>
+                <View>
+                    <Text style={styles.title}>Meu bolso</Text>
+                    <Text style={styles.subtitle}>Resumo financeiro</Text>
+                </View>
+                <TouchableOpacity>
+                    <Text style={styles.profile}>Perfil</Text>
+                </TouchableOpacity>
             </View>
 
             <BalanceCard balance={50000}/>
-            <AppButton title="Gerar relatório PDF"/>
-<<<<<<< HEAD
 
-            <View>
+            <View style={styles.row}>
                 <SummaryCard title="Receitas" value={10000} type="receita"/>
-                <SummaryCard title="Despesas" value={5000} type="despesa"/> 
+                <SummaryCard title="Despesas" value={5000} type="despesa"/>
             </View>
+
+            <AppButton title="Gerar relatório PDF"/>
+
             <Text style={styles.section}>Últimas transações</Text>
-=======
->>>>>>> c2928967332d822ecf89a8ab33149cd13eaf9113
         </View>
     );
 }
@@ -42,15 +38,22 @@ const styles = StyleSheet.create({
         paddingTop: 60,
     },
     header: {
-        flexDirection: 'row', 
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems:'center',
         paddingVertical: 16,
     },
+    title: {
+        fontSize: 24,
+        fontWeight: '900',
+        color: '#2f3640',
+    },
+    subtitle: {
+        color: '#7f8c8d',
+    },
     profile: {
         color:'#008f72',
         fontWeight: '700',
-<<<<<<< HEAD
     },
     row: {
         flexDirection:'row',
@@ -59,8 +62,7 @@ const styles = StyleSheet.create({
     section:{
         fontSize:18,
         fontWeight:'800',
-        marginVertical:10
-=======
->>>>>>> c2928967332d822ecf89a8ab33149cd13eaf9113
+        marginVertical:10,
+        marginTop: 20,
     }
 })

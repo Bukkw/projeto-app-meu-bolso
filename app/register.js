@@ -1,17 +1,10 @@
 import { useState } from 'react'; 
-import {
-    KeyboardAvoidingView,
-    Platform,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-    Alert,
-} from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router'
 import AppButton from '../src/components/AppButton';
 import AppInput from '../src/components/AppInput';
 import { signUp } from '../src/services/authService'
+import { showAlert } from '../src/utils/alert'
 
 export default function Cadastro() {
     const [email, setEmail] = useState('');
@@ -20,23 +13,22 @@ export default function Cadastro() {
     const [loading, setLoading] = useState(false);
 
     async function handleRegister(){
-        
-        if(!email.trim() || !password.trim() || !confirm.trim() )
-            return alert('Atenção \nPreencha todos os campos.');
-        if(password.length<6)
-        return alert('Atenção \nA senha deve ter no mínimo 6 caracteres.')
-        if(password!==confirm)
-            return alert ('Atenção \nAs senhas não conferem.');
+        if(!email.trim() || !password || !confirm)
+            return showAlert('Atenção', 'Preencha todos os campos.');
+        if(password.length < 6)
+            return showAlert('Atenção', 'A senha deve ter no mínimo 6 caracteres.');
+        if(password !== confirm)
+            return showAlert('Atenção', 'As senhas não conferem.');
 
         try{
             setLoading(true);
             const {error} = await signUp(email.trim(), password);
-            if(error){alert('Erro no cadastro', error.message)
-            return
-            } else {
-                alert('Sucesso! \nConta criada com sucesso, faça login para continuar.')
-                router.replace('/');
+            if(error){
+                showAlert('Erro no cadastro', error.message);
+                return;
             }
+            showAlert('Sucesso!', 'Conta criada com sucesso, faça login para continuar.');
+            router.replace('/');
         }finally{
             setLoading(false);
         }
@@ -83,7 +75,7 @@ export default function Cadastro() {
                 onPress={handleRegister}/>
                 </View>
 
-                <TouchableOpacity onPress={()=>router.push('/')}>
+                <TouchableOpacity onPress={()=>router.replace('/')}>
                     <Text style={styles.link}>Voltar para o login</Text>            
                 </TouchableOpacity>
                 
